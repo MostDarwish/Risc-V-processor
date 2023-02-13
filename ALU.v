@@ -10,15 +10,13 @@ module ALU(SrcA,SrcB,ALUControl,ALUResult,ZF,SF);
 		case(ALUControl)
 
 			3'b000: ALUResult = SrcA + SrcB;
-			3'b001: ALUResult = SrcA - SrcB;
-			3'b010: ALUResult = SrcA & SrcB;
-			3'b011: ALUResult = SrcA | SrcB;
+			3'b001: ALUResult = SrcA << SrcB[4:0];
+			3'b010: ALUResult = SrcA - SrcB;
 			3'b100: ALUResult = SrcA ^ SrcB;
-			3'b101: ALUResult = SrcA << SrcB[4:0];
-			3'b110: ALUResult = SrcA >> SrcB[4:0];
-
+			3'b101: ALUResult = SrcA >> SrcB[4:0];
+			3'b110: ALUResult = SrcA | SrcB;
+			3'b111: ALUResult = SrcA & SrcB;
 			default ALUResult = 32'bx;
-
 		endcase
 
 		if(ALUResult == 0) ZF = 1;
@@ -27,5 +25,4 @@ module ALU(SrcA,SrcB,ALUControl,ALUResult,ZF,SF);
 		SF = ALUResult[31];
 
 	end
-
 endmodule
