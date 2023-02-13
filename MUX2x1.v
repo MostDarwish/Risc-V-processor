@@ -4,6 +4,6 @@ module MUX2x1(A,B,sel,out);
 	input sel;
 	output [31:0] out;
 
-	assign out = out?B:A;
+	assign out = sel?B:A;
 
 endmodule

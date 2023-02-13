@@ -1,9 +1,8 @@
-module pc_inc(pc,inc,pc_new);
+module pc_inc(pc,pcPlus4);
 
-	input [31:0] pc,inc;
-	output pc_new;
+	input [31:0] pc;
+	output [31:0] pcPlus4;
 
-	assign inc = 4;
-	assign pc_new = pc + inc;
+	assign pcPlus4 = pc + 4;
 
 endmodule
