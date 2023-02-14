@@ -1,13 +1,13 @@
-module Risc_DataPath(CLK,PCSrc,RegWrite,ALUSrc,MemWrite,ResultSrc,ALUControl,ImmSrc,ZF,SF,rst,op_func);
+module Risc_DataPath(CLK,PCSrc,RegWrite,ALUSrc,MemWrite,ResultSrc,ALUControl,ImmSrc,ZF,SF,rst,op_func,HALT);
 
-input CLK,PCSrc,RegWrite,ALUSrc,MemWrite,ResultSrc,rst;
+input CLK,PCSrc,RegWrite,ALUSrc,MemWrite,ResultSrc,rst,HALT;
 input [2:0] ALUControl;
 input [1:0] ImmSrc;
 output ZF,SF;
 output [10:0] op_func;
 wire [31:0] PC,PCPlus4,PCNext,Instr,SrcA,SrcB,RD2,ALUResult,ImmExt,PCTarget,ReadData,Result;
 
-PC              pc        (.PCNext(PCNext),.rst(rst),.CLK(CLK),.PC(PC));
+PC              pc        (.PCNext(PCNext),.rst(rst),.CLK(CLK),.PC(PC),.HALT(HALT));
 pc_inc          PCInc     (.pc(PC),.pcPlus4(PCPlus4));
 inst_mem        InsMem    (.A(PC),.RD(Instr));
 RF              RF        (.A1(Instr[19:15]),.A2(Instr[24:20]),.A3(Instr[11:7]),.WD3(Result),.WE3(RegWrite),.CLK(CLK),.RD1(SrcA),.RD2(RD2));

@@ -1,7 +1,7 @@
 module RISCV_processor (clk,rst);
 
 	input clk,rst;
-	wire pcsrc,regwrite,alusrc,memwrite,resultsrc,zf,sf;
+	wire pcsrc,regwrite,alusrc,memwrite,resultsrc,zf,sf,HALT;
 	wire [2:0] alucontrol;
 	wire [1:0] immsrc;
 	wire [10:0] op_func;
@@ -20,7 +20,8 @@ module RISCV_processor (clk,rst);
 					   .ZF(zf),
 					   .SF(sf),
 					   .rst(rst),
-					   .op_func(op_func)
+					   .op_func(op_func),
+					   .HALT(HALT)
 					  );
 
 	control_unit CU (
@@ -35,7 +36,8 @@ module RISCV_processor (clk,rst);
 					   .ALUSrc(alusrc),
 					   .RegWrite(regwrite),
 					   .ALUControl(alucontrol),
-					   .ImmSrc(immsrc)
+					   .ImmSrc(immsrc),
+					   .HALT(HALT)
 					 );
 
 endmodule

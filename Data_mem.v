@@ -4,7 +4,7 @@ module Data_mem(A,WD,WE,CLK,RD);
 	input WE,CLK;
 	output [31:0] RD;
 
-	reg [7:0] DM [0:'h255];
+	reg [7:0] DM [0:1023];
 
 	always@(posedge CLK)begin
 		if(WE) {DM[A+3],DM[A+2],DM[A+1],DM[A]}<=WD;
