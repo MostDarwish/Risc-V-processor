@@ -1,0 +1,25 @@
+------C format------
+#include <stdio.h>
+
+void main()
+{
+    int x10,x12;
+    x12 = 255;
+    x10 = 0 ;
+    
+   while (x10 < x12){  x10++;
+    printf("%d",x10);
+    }
+}
+
+-----assembly format-----
+addi x12,x0,255  # initialize x12 with 0x00_00_00_ff
+addi x10,x0,0    # initialize x0  with 0x00_00_00_00
+while:
+addi x10,x10,1
+slli x13,x10,2
+sw x10,0(x13)
+bne  x10,x12,while # while (x10<=x12) x10 = x10++;
+
+addi x0,x0,0    #no op
+HALT #stoping PC from counting
