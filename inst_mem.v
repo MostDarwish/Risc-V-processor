@@ -4,9 +4,9 @@ module inst_mem(A,RD);
 	output [31:0] RD;
 
 
-	reg [7:0] inst_mem [0:255];
+	reg [31:0] inst_mem [0:63];
 
-	assign RD = {inst_mem[A+3],inst_mem[A+2],inst_mem[A+1],inst_mem[A]};
+	assign RD = inst_mem[A[31:2]];
 
 	initial begin
 		$readmemh("assembly_code.txt",inst_mem);
