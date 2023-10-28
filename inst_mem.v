@@ -1,6 +1,6 @@
 module inst_mem(A,RD);
 
-	input [31:0] A;
+	input  [31:0] A;
 	output [31:0] RD;
 
 
